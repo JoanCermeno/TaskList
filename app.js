@@ -128,7 +128,10 @@ const seleccionarFilas = (e) => {
                     let newValor1 = document.querySelector('#valor1');
                     let newValor2 = document.querySelector('#valor2');
                     editarTarea(idTarea, newValor1, newValor2);
-                };
+                }else{
+                    modal.classList.add('hidden');
+                }
+
             });
         });
     }
