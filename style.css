@@ -1,0 +1,238 @@
+    body {
+        background: url(80063_2.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+     color: #fff;
+    }
+    .modal{
+        width: 100%;
+        height: 100%;
+        background: #000e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        z-index: 100;
+    }
+    #about {
+        font-family: ubuntu;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 3em;
+        margin-top: 3em;
+        line-height: 30px;
+    }
+    #info_btn {
+        padding: 5px 10px;
+        background: #1266ff;
+        color: #fff;
+        font-family: ubuntu;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+    #info_btn:hover {
+        box-shadow: 1px 1px 3px #000;
+        background: #0af;
+    }
+    .conten {
+        width: 90%;
+        padding: 10px;
+        margin: auto;
+        border-radius: 10px;
+        box-shadow: 1px 1px 10px #fff;
+        background: #a3a2a266;
+        backdrop-filter: blur(9px);
+    }
+    .content_input {
+        border-radius: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        background: rgb(255 255 255 / 62%);
+        padding: 10px;
+        font-family: ubuntu;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .content_input input {
+        padding: 5px;
+        border-radius: 5px;
+        height: 20px;
+        border: 2px solid #09e;
+        color: #000;
+    }
+    .agregar_tarea {
+        display: flex;
+        height: 30px;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .table {
+    
+    }
+    .table:nth-child(1) {
+        background: red;
+    }
+    .row {
+        margin-top: 5px;
+        display: flex;
+        justify-content: space-around;
+        transition-delay: easy;
+        transition-duration: 0.5s;
+        transition-property: background;
+        cursor: pointer;
+        border-radius: 10px;
+
+    }
+
+    .desciption {
+        border: 2px solid #09e;
+        border-radius: 5px;
+        padding: 5px;
+        width: 40%;
+        height: 30px;
+        resize: none;
+        color: #000;
+    }
+    .row:hover {
+        background: #0ef4;
+        border-radius: 10px;
+
+    }
+    .valorNombre {
+        border-right: 1px solid royalblue;
+        width: 50%;
+    }
+    .valorDesciption {
+        border-left: 1px solid royalblue;
+        width: 50%;
+    }
+    .table_head {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+    .valorNombre {
+        padding: 10px;
+    }
+    .valorDesciption {
+        padding: 10px;
+    }
+    .idRow {
+        padding-top: 1%;
+        color: #fff;
+        cursor: pointer;
+        font-size: 19px;
+    }    
+    .idRow:before{
+        content: '#';
+    }
+    #put {
+        padding: 5px 10px;
+        background: #1266ff;
+        color: #fff;
+        font-family: ubuntu;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      
+    }
+    #put:hover{
+        background: #39f;
+        box-shadow: 1px 1px 1px #003;
+    }
+    .selec{
+        box-shadow: 0px 0px 2px #fff;
+    }
+
+    .miniModalOp{
+        
+        display: flex;
+        align-items: center;
+        font-family: ubuntu;
+    box-sizing: border-box;
+        height: 50px;
+       padding: 5px 10px;
+        width: 100%;
+        justify-content: space-evenly;
+
+    
+    }
+    .hidden{
+        opacity: 0%;
+        position: relative;
+    }
+    .miniModalOp button{
+        padding: 5px 10px;
+        color: #fff;
+        font-family: ubuntu;
+        border-radius: 5px;
+        border: none;
+       cursor: pointer;
+
+    }
+
+    #btnEliminar{
+        background: #e00;
+       
+    }
+    #btnEditar{
+        background: #00e;
+    }
+/*    .miniModalOp:after{
+        content: '';
+        border: 1px solid black;
+        width: 50px;
+        padding: 10px;
+        height: 10px;
+        position: absolute;
+    }*/
+    #formEditar{
+        width: 50%;
+        height: 50%;
+        display: flex;
+        background: #fff3;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;      
+        border-radius: 10px;
+        border: 1px solid #fff;
+    }
+    #formEditar input {
+        padding: 5px;
+        border-radius: 5px;
+        height: 20px;
+        border: 2px solid #09e;
+        color: #000;
+    }
+    .pieFormEditar{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 80%;
+    }
+    .pieFormEditar button{
+        padding: 5px 10px;
+        color: #fff;
+        font-family: ubuntu;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+    #btnSave{
+        background: #00e;
+
+    }
+    #btnCancel{
+        background: #e03;
+    }

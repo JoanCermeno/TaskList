@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1" name="viewport">
+                <title>
+                    List Of Taks
+                </title>
+            </meta>
+        </meta>
+        <link href="style.css" rel="stylesheet" type="text/css">
+        </link>
+    </head>
+    <body>
+        <section id="about">
+            <h2>
+                Task List Create by Joan cermeño
+            </h2>
+            <p>
+                Escribe el titulo de la tarea o actividad que desas realizar y agrega una descption
+            </p>
+            <button id="info_btn">
+                About
+            </button>
+        </section>
+        <div class="conten">
+            <div class="content_input">
+                <div class="content_input" lass="agregar_tarea">
+                    <input class="name_task" placeholder="Titulo" type="text">
+                        <textarea class="desciption" placeholder="Desciption"></textarea>
+                        <button id="put">
+                            New Tarea
+                        </button>
+                    </input>
+                </div>
+            </div>
+            <section class="miniModalOp hidden">
+                <p id="titleMiniModal">
+                    Acciones Sobre este elemento:
+                </p>
+                <button id="btnEditar">
+                    Editar
+                </button>
+                <button id="btnEliminar">
+                    Eliminar
+                </button>
+            </section>
+            <div class="table">
+                <div class="table_head">
+                    <h2>
+                        TITULO DE LA TAREA
+                    </h2>
+                    <h2>
+                        Descipcion de la tarea
+                    </h2>
+                </div>
+                <section class="TableBody">
+                    <div class="row">
+                    </div>
+                </section>
+            </div>
+        </div>
+        <section class="modal hidden"></section>
+    </body>
+    <script src="app.js" type="text/javascript"></script>
+</html>
