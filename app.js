@@ -7,16 +7,12 @@ const TableBody = document.querySelector('.TableBody');
 const miniModal = document.querySelector('.miniModalOp');
 const btEditar = document.querySelector('#btnEditar');
 const modal = document.querySelector('.modal');
-//creadno un mini registro de todas las tareas que existen con objetos JSON Sin
-//Este objeto no esta serializado. pero funciona
+//Variables Globales, Numero de filas y el objeto para almacenar las lista de tareas
 let NumeroFilas = 0;
-let tareas = [{
-    id: 0,
-    name_tarea: "example",
-    description_tarea: "example"
-}];
-// FUNCIONES DEL PROGRAMA BASICAS
+let tareas = [];
+// FUNCIONES DEL BASICAS DEL PROGRAMA
 const loadTask = () => {
+    TableBody.innerHTML = '';
     for (tarea of tareas) {
         let mostrarFila = `
             <div class="row">
@@ -27,7 +23,7 @@ const loadTask = () => {
                 <div class="valorDesciption">${tarea.description_tarea}</div>
             </div>
             `;
-        document.querySelector('.TableBody').innerHTML += mostrarFila;
+        TableBody.innerHTML += mostrarFila;
     }
 }
 const guardarTarea = (title, description) => {
@@ -39,15 +35,25 @@ const guardarTarea = (title, description) => {
     tareas.push(nuevaTarea);
 }
 const editarTarea = (id, title, description) => {
-    console.log("ENTRO EDITAR TAREA");
-    parseInt(id);
-    parseInt( )
-    for (tarea of tareas) {
-        if(tarea.id == id){
-            console.log(tarea);       
-        }
+    console.log("ENTRAMOS A EDITAR TAREA")
+    id = Number(id);
+    let tareaFound = tareas.find(tarea => tarea.id == id);
+    if (tareaFound != undefined) {
+        tareaFound.name_tarea = title;
+        tareaFound.description_tarea = description;
         
+        loadTask();
+    } else {
+        console.log("TAREA NO ENCONTRADA")
+
+        return 'Tarea No encontrada';
     }
+    // for (tarea of tareas) {
+    //     if(tarea.id == id){
+    //         console.log("mostrando el objeto a editar");
+    //         console.log(tarea);
+    //     }
+    // }
 }
 const pintarInTable = (valor1, valor2) => {
     //generamos una nueva fila
@@ -58,8 +64,8 @@ const pintarInTable = (valor1, valor2) => {
         if (valor1.lenght >= 20 || valor2.lenght >= 60) {
             reject('Error No puede tener tantos caracteres eseciales');
         } else {
-            resolve('todo ok');
             guardarTarea(valor1, valor2);
+            resolve('todo ok');
         }
     });
     promesa.then((res) => {
@@ -86,17 +92,17 @@ const seleccionarFilas = (e) => {
     } else {
         //Agarramos todos los datos de la tarea seleccionada desde el array tareas[];
         let idTarea = contentPadre.children[0].innerHTML;
-        let tituloTarea = tareas[idTarea].name_tarea;
+        let tituloTarea = tareas.find(tarea => tarea.id == idTarea);
         let desTarea = tareas[idTarea].description_tarea;
         //epezamos con los eventos
         contentPadre.classList.toggle('selec');
         document.querySelector('.miniModalOp').classList.remove('hidden');
         document.querySelector('#titleMiniModal').innerHTML = `Acciones a realizar sobre el elemento ${idTarea}`;
-        //BTN EDITAR FUNCION EDITAR TAREA
+        //Evento para disparar el evento de editar, se mete aqui dentro para poder pasar argumentos a
+        //a la funcion editar
         btEditar.addEventListener('click', (e) => {
             modal.classList.remove('hidden');
             modal.innerHTML = `<form id="formEditar">
-
                <h2>${e.target.innerHTML} el elemento ${idTarea}</h2>
                <span>Nuevo Titulo</span>
                 <input id="valor1" type="text" value="${tituloTarea}">
@@ -125,13 +131,12 @@ const seleccionarFilas = (e) => {
                 let save = confirm("Seguro de que quieres guardar los cambios?");
                 if (save) {
                     console.log("SAVE IS TRUE");
-                    let newValor1 = document.querySelector('#valor1');
-                    let newValor2 = document.querySelector('#valor2');
+                    let newValor1 = document.querySelector('#valor1').value;
+                    let newValor2 = document.querySelector('#valor2').value;
                     editarTarea(idTarea, newValor1, newValor2);
-                }else{
+                } else {
                     modal.classList.add('hidden');
                 }
-
             });
         });
     }
@@ -142,10 +147,8 @@ const clearInput = () => {
         DescriptionTarea.value = '';
     }, 2000);
 }
-//Fin del Area de declaracion de funciones
-//llamamos a la funcion cargar tareas para que pinte en la pantalla las tareas guardadas/
-loadTask();
-///eventos de la interfaz
+
+//eventos de la interfaz para poder disparar todas la acciones
 btnPut.addEventListener('click', (e) => {
     e.preventDefault();
     pintarInTable(NombreTarea.value, DescriptionTarea.value);
