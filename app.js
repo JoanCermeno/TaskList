@@ -16,7 +16,7 @@ const loadTask = () => {
     for (tarea of tareas) {
         let mostrarFila = `
             <div class="row">
-                <span class="idRow">${tarea.id}</span>
+                <span class="idRow">${++tarea.id}</span>
                 <div class="valorNombre">
                     ${tarea.name_tarea}
                 </div>
@@ -37,23 +37,16 @@ const guardarTarea = (title, description) => {
 const editarTarea = (id, title, description) => {
     console.log("ENTRAMOS A EDITAR TAREA")
     id = Number(id);
+    --id;
     let tareaFound = tareas.find(tarea => tarea.id == id);
     if (tareaFound != undefined) {
         tareaFound.name_tarea = title;
         tareaFound.description_tarea = description;
-        
         loadTask();
+        modal.classList.add('hidden');
     } else {
-        console.log("TAREA NO ENCONTRADA")
-
         return 'Tarea No encontrada';
     }
-    // for (tarea of tareas) {
-    //     if(tarea.id == id){
-    //         console.log("mostrando el objeto a editar");
-    //         console.log(tarea);
-    //     }
-    // }
 }
 const pintarInTable = (valor1, valor2) => {
     //generamos una nueva fila
@@ -81,7 +74,6 @@ const pintarInTable = (valor1, valor2) => {
             </div>
             `;
         TableBody.innerHTML += rowGenerada;
-        alert(res);
     }).catch((error) => alert(error));
 }
 const seleccionarFilas = (e) => {
@@ -92,12 +84,13 @@ const seleccionarFilas = (e) => {
     } else {
         //Agarramos todos los datos de la tarea seleccionada desde el array tareas[];
         let idTarea = contentPadre.children[0].innerHTML;
-        let tituloTarea = tareas.find(tarea => tarea.id == idTarea);
+        idTarea--;
+        let tituloTarea = tareas[idTarea].name_tarea;
         let desTarea = tareas[idTarea].description_tarea;
         //epezamos con los eventos
         contentPadre.classList.toggle('selec');
         document.querySelector('.miniModalOp').classList.remove('hidden');
-        document.querySelector('#titleMiniModal').innerHTML = `Acciones a realizar sobre el elemento ${idTarea}`;
+        document.querySelector('#titleMiniModal').innerHTML = `Acciones a realizar sobre el elemento ${++idTarea}`;
         //Evento para disparar el evento de editar, se mete aqui dentro para poder pasar argumentos a
         //a la funcion editar
         btEditar.addEventListener('click', (e) => {
@@ -133,19 +126,31 @@ const seleccionarFilas = (e) => {
                     console.log("SAVE IS TRUE");
                     let newValor1 = document.querySelector('#valor1').value;
                     let newValor2 = document.querySelector('#valor2').value;
-                    editarTarea(idTarea, newValor1, newValor2);
+                    if(newValor1 == '' || valor2 == ''){
+                        alert("NOS PUEDES DEJAR CAMPOS VACIOS")
+                    } else{
+                        editarTarea(idTarea, newValor1, newValor2);
+                    }
                 } else {
                     modal.classList.add('hidden');
                 }
-            });
+            }); 
         });
     }
 }
+
+const borrarTarea = (idTarea)=>{
+    const tareaFound = tareas.find(element => element.id == idTarea);
+    if(tareaFound != undefined){
+        
+    }
+}
+
 const clearInput = () => {
     setTimeout(() => {
         NombreTarea.value = '';
         DescriptionTarea.value = '';
-    }, 2000);
+    }, 100);
 }
 
 //eventos de la interfaz para poder disparar todas la acciones
@@ -158,4 +163,5 @@ Info.addEventListener('click', (e) => {
     e.preventDefault();
     alert('esto sirve para agregar una lista de cosas que hacer en el dia creado por joan cermeño para ganar una apuestsa');
 });
+
 TableBody.addEventListener('click', seleccionarFilas);

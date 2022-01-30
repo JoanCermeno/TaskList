@@ -1,0 +1,44 @@
+#main__menu {
+    grid-column: 1 /2;
+    border-radius: 5px;
+}
+#main__menu header {
+    text-align: center;
+    max-height: 10%;
+    margin: auto;
+    width: 90%;
+}
+#main__menu header h2 {
+	padding-top: 10px;
+	margin-bottom: 10px;
+    color: #fff;	
+    text-align: left;
+    margin-left: 0px;
+    border-bottom: 1px solid #fff9;
+}
+#menu_opciones ul li a {
+	color:  #0009;
+	padding: 10px;
+    display: block;
+    text-decoration: none;
+    font-family: ubuntu;
+    font-size: 11pt;
+    border-radius: 5px;
+    font-weight: 700;
+}
+#menu_opciones ul li {
+    margin-top: 10px;
+    background: #fffe;
+    max-width: 80%;
+    text-align: center;
+    list-style: none;
+    border-radius: 5px;
+
+}
+#menu_opciones ul li a:target {
+    background: #00aaff;
+
+}
+.bodyContent {
+    grid-column: 2 /2;
+}
